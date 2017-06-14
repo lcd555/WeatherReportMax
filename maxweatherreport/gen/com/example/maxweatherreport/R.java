@@ -90,13 +90,13 @@ public final class R {
         public static final int action_settings=0x7f08000b;
         public static final int city_name=0x7f080003;
         public static final int current_date=0x7f080007;
-        public static final int list_view=0x7f080001;
+        public static final int listview=0x7f080001;
         public static final int publish_time=0x7f080005;
         public static final int refresh=0x7f080004;
         public static final int switch_city=0x7f080002;
         public static final int temp1=0x7f080009;
         public static final int temp2=0x7f08000a;
-        public static final int title_text=0x7f080000;
+        public static final int title=0x7f080000;
         public static final int weather_desp=0x7f080008;
         public static final int weather_info=0x7f080006;
     }

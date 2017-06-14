@@ -14,11 +14,13 @@ public class PCCDb extends SQLiteOpenHelper{
 	}
 
 	@Override
-	public void onCreate(SQLiteDatabase db) {
+	public void onCreate(SQLiteDatabase db) {//创建数据库
 		db.execSQL("create table Province ("
 	            + "provinceName text," + "provinceId text )");
+		//
 		db.execSQL("create table City("
 	            + "cityName text," + "cityId text," + "provinceId text)");
+		//
 		db.execSQL("create table County("
 	            + "countyName text," + "countyId text," + "cityId text)");
 		
