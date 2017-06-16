@@ -24,7 +24,7 @@ public class HttpUtil {//联网工具类
 	                    connection.setRequestMethod("GET");
 	                    connection.setConnectTimeout(8000);
 	                    connection.setReadTimeout(8000);
-	                    //connection.setRequestProperty("apikey", "填入自己的apikey");
+	                    connection.setRequestProperty("apikey", "CQeerRWXqN4U0LoPQMYsAYYaiG1v8ge0");
 	                    connection.connect();
 	                    //将网上数据放在response
 	                    InputStream in = connection.getInputStream();

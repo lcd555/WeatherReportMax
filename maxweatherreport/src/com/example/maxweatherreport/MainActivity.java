@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -63,12 +64,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //weather  activity用 intent传来的chooseArea来判断是否是由weather还回，不是直接入
         isFromWeatherActivity = getIntent().getBooleanExtra("ChooseArea", false);
-        SharedPreferences sharedPreferences = getSharedPreferences("Weather", Context.MODE_PRIVATE);
+        SharedPreferences sP = getSharedPreferences("Weather", Context.MODE_PRIVATE);
 
         // 如果country已选择且本Activity不是从天气界面启动而来的，则直接跳转到WeatherActivity
 
-        if (!TextUtils.isEmpty(sharedPreferences.getString("CountyName", "")) && !isFromWeatherActivity) {
+        if (!TextUtils.isEmpty(sP.getString("CountyName", "")) && !isFromWeatherActivity) {
             Intent intent = new Intent(this, Weather.class);
             startActivity(intent);
             finish();
@@ -98,8 +100,12 @@ public class MainActivity extends Activity {
                     //当点击到县列表时，就利用Intent跳转到天气信息界面
                     String countyName = countyList.get(index).getCountyName();
                     Intent intent = new Intent(MainActivity.this, Weather.class);
+                    SharedPreferences sP = getSharedPreferences("Weather", Context.MODE_PRIVATE);
                     intent.putExtra("CountyName", countyName);
                     startActivity(intent);
+                    Editor edit=sP.edit();
+                    edit.putString("CountyName",countyName);
+                    edit.commit();
                     finish();
                 }
             }
@@ -111,7 +117,7 @@ public class MainActivity extends Activity {
 
    //查询省
     private void queryProvinces() {
-    	titleText.setText("中国");
+    	titleText.setText("中国Lcd");
         provinceList = weatherDB.getAllProvince();
         if (provinceList.size() > 0) {
             dataList.clear();
@@ -129,7 +135,7 @@ public class MainActivity extends Activity {
     }
     
     
-    
+    //查市
     private void queryCities() {
         
         cityList = weatherDB.getAllCity(selectedProvince.getpId());
@@ -148,7 +154,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    
+    //查县
     private void queryCounties(){
         
         countyList = weatherDB.getAllCountry(selectedCity.getcId());

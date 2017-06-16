@@ -6,9 +6,12 @@ import java.util.List;
 import model.City;
 import model.County;
 import model.Province;
+import model.WeatherPojo;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.example.maxweatherreport.Weather;
 
 import dao.OperateDB;
 
@@ -84,7 +87,7 @@ public class JsonUtil {
     }
 
     // 处理服务器返回的json数据
-    /*public static void handleWeatherResponse(Context context, String response) {
+    public static void handleWeatherResponse(Context context, String response) {
         try {
             JSONObject jsonobject = new JSONObject(response);
             JSONArray title = jsonobject.getJSONArray("HeWeather data service 3.0");
@@ -106,7 +109,7 @@ public class JsonUtil {
 
             JSONArray hourly_forecast = (JSONArray) first_object.get("hourly_forecast");
 
-            WeatherActivity.weatherList.clear();
+            Weather.weatherList.clear();
 
             for (int i = 0; i < hourly_forecast.length(); i++) {
                 JSONObject json = hourly_forecast.getJSONObject(i);
@@ -116,11 +119,11 @@ public class JsonUtil {
                 String dir = json_wind.getString("dir");
                 String sc = json_wind.getString("sc");
                 String hourly_clock = array[1];
-                String hourly_temp = "温度：" + json.getString("tmp") + "℃";
+                String temp1 = "温度：" + json.getString("tmp") + "℃";
                 String hourly_pop = "降水概率：" + json.getString("pop");
-                String hourly_wind = "风力：" + dir + " " + sc + "级";
-                HourlyWeather weather = new HourlyWeather(hourly_clock, hourly_temp, hourly_pop, hourly_wind);
-                WeatherActivity.weatherList.add(weather);
+                String wind1 = "风力：" + dir + " " + sc + "级";
+                WeatherPojo weather = new WeatherPojo(hourly_clock, temp1, wind1,hourly_pop );
+                Weather.weatherList.add(weather);
             }
             //日出
             String sunriseTime = astro.getString("sr");
@@ -135,12 +138,13 @@ public class JsonUtil {
             //降水概率
             String pop = daily_forecast_first.getString("pop");
             //温度
-            String tempText = temp.getString("min") + "℃~" + temp.getString("max") + "℃";
+            String tempText1 = temp.getString("min") + "℃";
+            	String tempText2=temp.getString("max") + "℃";
             //更新时间
             String updateTime = update.getString("loc");
             //城市名
             String cityName = basic.getString("city");
-            saveWeatherInfo(context, cityName, sunriseTime, sunsetTime, dayWeather, nightWeather, windText, pop, tempText, updateTime);
+            saveWeatherInfo(context, cityName, sunriseTime, sunsetTime, dayWeather, nightWeather, windText, pop, tempText1,tempText2, updateTime);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -148,8 +152,8 @@ public class JsonUtil {
 
     private static void saveWeatherInfo(Context context, String cityName,
                                         String sunriseTime, String sunsetTime, String dayWeather, String nightWeather,
-                                        String windText, String pop, String tempText, String updateTime) {
-        SharedPreferences.Editor editor = context.getSharedPreferences("Weather", Context.MODE_PRIVATE).edit();
+                                        String windText, String pop, String tempText1,String tempText2, String updateTime) {
+        SharedPreferences.Editor editor = context.getSharedPreferences("Weather1", Context.MODE_PRIVATE).edit();
         editor.putString("cityName", cityName);
         editor.putString("sunriseTime", sunriseTime);
         editor.putString("sunsetTime", sunsetTime);
@@ -157,12 +161,13 @@ public class JsonUtil {
         editor.putString("nightWeather", nightWeather);
         editor.putString("wind", windText);
         editor.putString("pop", pop);
-        editor.putString("temp", tempText);
+        editor.putString("temp1", tempText1);
+        editor.putString("temp2", tempText2);
         editor.putString("updateTime", updateTime);
         editor.commit();
     }
 	
 	
-	*/
+	
 	
 }

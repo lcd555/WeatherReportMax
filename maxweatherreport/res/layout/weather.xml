@@ -13,7 +13,8 @@
             android:id="@+id/switch_city"
             android:layout_centerVertical="true"
             android:layout_marginLeft="0dp"
-            android:background="@drawable/home"/>
+            android:background="@drawable/home"
+            android:onClick="click"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +28,8 @@
             android:id="@+id/refresh"
             android:background="@drawable/refresh"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            android:onClick="push"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,7 +44,8 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:textColor="#ffffff"
-            android:textSize="28sp"/>
+            android:textSize="28sp"
+            android:text="0:00"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +58,8 @@
                 android:id="@+id/current_date"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:text="oyj多云"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -63,7 +67,8 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                android:textSize="40sp"/>
+                android:textSize="40sp"
+                android:text="西北风"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="60dp"
@@ -75,7 +80,8 @@
                     android:id="@+id/temp1"
                     android:layout_gravity="center_vertical"
                     android:textColor="#ffffff"
-                    android:textSize="40sp"/>
+                    android:textSize="40sp"
+                    android:text="10℃"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -91,7 +97,8 @@
                     android:id="@+id/temp2"
                     android:layout_gravity="center_vertical"
                     android:textColor="#ffffff"
-                    android:textSize="40sp"/>
+                    android:textSize="40sp"
+                    android:text="25℃"/>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
